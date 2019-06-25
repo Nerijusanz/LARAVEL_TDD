@@ -59,9 +59,10 @@ class BookReservationTest extends TestCase
         $response = $this->post('/books',$book);
 
         $this->assertCount(1,Book::all());
-
+        
         //-----TEST REDIRECT-------------- //
-        $response->assertRedirect('/books');
+        $book = Book::first();
+        $response->assertRedirect($book->viewPath());
     }
 
     public function testUpdateBook()
