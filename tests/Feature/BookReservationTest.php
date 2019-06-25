@@ -82,7 +82,8 @@ class BookReservationTest extends TestCase
         $this->assertCount(1,Book::all());
 
         //-----TEST REDIRECT-------------- //
-        $response->assertRedirect('/books');
+        $book = Book::first();
+        $response->assertRedirect($book->viewPath());
 
 
     //------------UPDATE SECTION--------------
@@ -111,7 +112,8 @@ class BookReservationTest extends TestCase
         $this->assertEquals($updBook->author,$uBookData['author']);
 
         //-----TEST REDIRECT-------------- //
-        $response->assertRedirect('/books/'.$updBookId);
+
+        $response->assertRedirect($updBook->viewPathById());
 
     }
 
