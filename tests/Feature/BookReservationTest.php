@@ -41,13 +41,13 @@ class BookReservationTest extends TestCase
 
         $this->withoutExceptionHandling();
 
-        $this->post('/books',$book);
+        $response = $this->post('/books',$book);
 
-        $response = $this->get('/books');
-
-        $response->assertOk();
-
+        //-----TEST BOOK CREATED -------------//
         $this->assertCount(1,Book::all());
+
+        //-----TEST REDIRECT-------------- //
+        $response->assertRedirect('/books');
 
 
     //------------UPDATE SECTION--------------
@@ -67,21 +67,16 @@ class BookReservationTest extends TestCase
             'author'=>'Book1 author updated'
         ];
         
-        $this->put('/books/'.$updBookId,$uBookData);
-        
-        
-        //-----------TEST REDIRECT ------------------------
-
-        //after update redirect to books page
-        $response = $this->get('/books'); 
-
-        $response->assertOk();
+        $response = $this->put('/books/'.$updBookId,$uBookData);
 
         //-----------TEST UPDATED DATA----------------------
         $updBook = Book::where('id','=',$updBookId)->first();
         
         $this->assertEquals($updBook->title,$uBookData['title']);
         $this->assertEquals($updBook->author,$uBookData['author']);
+
+        //-----TEST REDIRECT-------------- //
+        $response->assertRedirect('/books');
 
     }
 
