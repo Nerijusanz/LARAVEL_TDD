@@ -61,8 +61,8 @@ class BookReservationTest extends TestCase
         $this->assertCount(1,Book::all());
         
         //-----TEST REDIRECT-------------- //
-        
-        $response->assertRedirect('/books');
+        $book = Book::first();
+        $response->assertRedirect($book->viewPath());
     }
 
     public function testUpdateBook()
@@ -82,8 +82,8 @@ class BookReservationTest extends TestCase
         $this->assertCount(1,Book::all());
 
         //-----TEST REDIRECT-------------- //
-        
-        $response->assertRedirect('/books');
+        $book = Book::first();
+        $response->assertRedirect($book->viewPath());
 
 
     //------------UPDATE SECTION--------------
@@ -113,7 +113,7 @@ class BookReservationTest extends TestCase
 
         //-----TEST REDIRECT-------------- //
 
-        $response->assertRedirect('/books/'.$updBook->id);
+        $response->assertRedirect($updBook->viewPathById());
 
     }
 
@@ -135,7 +135,8 @@ class BookReservationTest extends TestCase
         $this->assertCount(1,Book::all());
 
         //-----TEST REDIRECT-------------- //
-        $response->assertRedirect('/books');
+        $book = Book::first();
+        $response->assertRedirect($book->viewPath());
 
 
     //--------------DELETE SECTION--------------
@@ -155,9 +156,7 @@ class BookReservationTest extends TestCase
         $this->assertCount(0,Book::all());
         
         //-----------TEST REDIRECT ------------------------
-
-        //after update redirect to books page
-
+        
         $response->assertRedirect('/books');
 
 
