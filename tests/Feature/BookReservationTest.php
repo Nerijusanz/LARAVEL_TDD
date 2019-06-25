@@ -86,6 +86,55 @@ class BookReservationTest extends TestCase
 
     }
 
+    public function testDeleteBook()
+    {
+
+        //-----------ADD SECTION--------------
+        $book = [
+            'title'=>'Book1',
+            'author'=>'Book1'
+        ];
+
+        $this->withoutExceptionHandling();
+
+        $this->post('/books',$book);
+
+        //---- TEST BOOK IS ADDEDD--------//
+
+        $this->assertCount(1,Book::all());
+
+        //-----TEST REDIRECT-------------- //
+        $response = $this->get('/books');   //redirect to books page
+
+        $response->assertOk();
+
+
+    //--------------DELETE SECTION--------------
+
+        //get added book by title
+        //$currBook = Book::first();
+        $currBook = Book::where([
+            ['title','=',$book['title'] ],
+            ['author','=',$book['author']]
+            ])->first();
+        
+
+        $this->delete('/books/'.$currBook->id);
+
+        //-----------TEST DELETED DATA----------------------
+
+        $this->assertCount(0,Book::all());
+        
+        //-----------TEST REDIRECT ------------------------
+
+        //after update redirect to books page
+        $response = $this->get('/books'); 
+
+        $response->assertOk();
+
+
+    }
+
 
     public function testBookTitleRequired()
     {
