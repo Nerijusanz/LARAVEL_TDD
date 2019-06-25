@@ -16,12 +16,12 @@ class BooksController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(Request $request,Book $book)
     {
 
         Book::create( $this->_validate() );
 
-        return redirect('/books')->with('success','Book Created');
+        return redirect($book->viewPath())->with('success','Book Created');
 
     }
 
@@ -30,7 +30,7 @@ class BooksController extends Controller
 
         $book->update( $this->_validate() );
 
-        return redirect('/books/'.$book->id)->with('success','Book Updated');
+        return redirect($book->viewPathById() )->with('success','Book Updated');
         
     }
 
@@ -39,7 +39,7 @@ class BooksController extends Controller
         
         $book->delete($book);
 
-        return redirect('/books')->with('success','Book Deleted');
+        return redirect($book->viewPath())->with('success','Book Deleted');
         
     }
 
