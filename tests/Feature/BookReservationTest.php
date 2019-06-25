@@ -55,7 +55,10 @@ class BookReservationTest extends TestCase
 
         //get added book by title
         //$currBook = Book::first();
-        $currBook = Book::where('title','=',$book['title'])->first();
+        $currBook = Book::where([
+            ['title','=',$book['title'] ],
+            ['author','=',$book['author']]
+            ])->first();
         
         $updBookId = $currBook->id;
 
