@@ -18,3 +18,4 @@ Route::get('/', function () {
 Route::get('/books','BooksController@index');
 Route::post('/books','BooksController@store');
 Route::put('/books/{book}','BooksController@update');
+Route::delete('/books/{book}','BooksController@destroy');
