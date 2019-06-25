@@ -12,7 +12,7 @@ class BookReservationTest extends TestCase
 
     use RefreshDatabase;
 
-    public function testBookTitleRequired()
+    public function testAddBookTitleRequired()
     {
 
         $book = [
@@ -29,7 +29,7 @@ class BookReservationTest extends TestCase
         
     }
 
-    public function testBookTitleRequiredMinThreeStringSymbols()
+    public function testAddBookTitleRequiredMinThreeStringSymbols()
     {
 
         $book = [
