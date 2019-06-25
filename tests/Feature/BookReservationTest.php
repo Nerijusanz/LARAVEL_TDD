@@ -119,7 +119,7 @@ class BookReservationTest extends TestCase
             ])->first();
         
 
-        $this->delete('/books/'.$currBook->id);
+        $response = $this->delete('/books/'.$currBook->id);
 
         //-----------TEST DELETED DATA----------------------
 
@@ -128,9 +128,7 @@ class BookReservationTest extends TestCase
         //-----------TEST REDIRECT ------------------------
 
         //after update redirect to books page
-        $response = $this->get('/books'); 
-
-        $response->assertOk();
+        $response->assertRedirect('/books');
 
 
     }
