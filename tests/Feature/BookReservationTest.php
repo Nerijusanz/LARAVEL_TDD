@@ -12,6 +12,40 @@ class BookReservationTest extends TestCase
 
     use RefreshDatabase;
 
+    public function testBookTitleRequired()
+    {
+
+        $book = [
+            'title'=>'',
+            'author'=>'Book1 author'
+        ];
+
+        $response = $this->post('/books',$book);
+
+        $this->assertCount(0,Book::all());
+
+        $response->assertSessionHasErrors('title');
+
+        
+    }
+
+    public function testBookTitleRequiredMinThreeStringSymbols()
+    {
+
+        $book = [
+            'title'=>'BB',
+            'author'=>'Book1 author'
+        ];
+
+        $response = $this->post('/books',$book);
+
+        $this->assertCount(0,Book::all());
+
+        $response->assertSessionHasErrors('title');
+
+        
+    }
+
     public function testAddBook()
     {
 
@@ -125,39 +159,5 @@ class BookReservationTest extends TestCase
 
     }
 
-
-    public function testBookTitleRequired()
-    {
-
-        $book = [
-            'title'=>'',
-            'author'=>'Book1 author'
-        ];
-
-        $response = $this->post('/books',$book);
-
-        $this->assertCount(0,Book::all());
-
-        $response->assertSessionHasErrors('title');
-
-        
-    }
-
-    public function testBookTitleRequiredMinThreeStringSymbols()
-    {
-
-        $book = [
-            'title'=>'BB',
-            'author'=>'Book1 author'
-        ];
-
-        $response = $this->post('/books',$book);
-
-        $this->assertCount(0,Book::all());
-
-        $response->assertSessionHasErrors('title');
-
-        
-    }
 
 }
