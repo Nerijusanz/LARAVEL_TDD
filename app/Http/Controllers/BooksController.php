@@ -30,7 +30,7 @@ class BooksController extends Controller
 
         $book->update( $this->_validate() );
 
-        return redirect('/books')->with('success','Book Updated');
+        return redirect('/books/'.$book->id)->with('success','Book Updated');
         
     }
 
