@@ -110,7 +110,7 @@ class BookReservationTest extends TestCase
         $this->assertEquals($updBook->author,$uBookData['author']);
 
         //-----TEST REDIRECT-------------- //
-        $response->assertRedirect('/books');
+        $response->assertRedirect('/books/'.$updBookId);
 
     }
 
