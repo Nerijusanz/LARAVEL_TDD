@@ -22,13 +22,12 @@ class BookReservationTest extends TestCase
             'author'=>'Book1 author'
         ];
 
-        $this->post('/books',$book);
-
-        $response = $this->get('/books');
-
-        $response->assertOk();
+        $response = $this->post('/books',$book);
 
         $this->assertCount(1,Book::all());
+
+        //-----TEST REDIRECT-------------- //
+        $response->assertRedirect('/books');
     }
 
     public function testUpdateBook()
