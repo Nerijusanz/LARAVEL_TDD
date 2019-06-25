@@ -97,16 +97,14 @@ class BookReservationTest extends TestCase
 
         $this->withoutExceptionHandling();
 
-        $this->post('/books',$book);
+        $response = $this->post('/books',$book);
 
         //---- TEST BOOK IS ADDEDD--------//
 
         $this->assertCount(1,Book::all());
 
         //-----TEST REDIRECT-------------- //
-        $response = $this->get('/books');   //redirect to books page
-
-        $response->assertOk();
+        $response->assertRedirect('/books');
 
 
     //--------------DELETE SECTION--------------
