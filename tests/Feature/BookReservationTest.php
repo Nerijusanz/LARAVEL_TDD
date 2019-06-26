@@ -106,14 +106,11 @@ class BookReservationTest extends TestCase
     {
 
         //-----------ADD SECTION--------------
-        $book = [
-            'title'=>'Book1',
-            'author'=>'Book1'
-        ];
+        $data = $this->_data();
 
         $this->withoutExceptionHandling();
 
-        $response = $this->post('/books',$book);
+        $response = $this->post('/books',$data);
 
         //---- TEST BOOK IS ADDEDD--------//
 
@@ -129,8 +126,8 @@ class BookReservationTest extends TestCase
         //get added book by title
         //$currBook = Book::first();
         $currBook = Book::where([
-            ['title','=',$book['title'] ],
-            ['author','=',$book['author']]
+            ['title','=',$data['title'] ],
+            ['author','=',$data['author']]
             ])->first();
         
 
