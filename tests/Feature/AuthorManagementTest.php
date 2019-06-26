@@ -29,7 +29,8 @@ class AuthorManagementTest extends TestCase
         $author = Author::all();
 
         $this->assertCount(1,$author);
-        $this->assertInstanceOf(Carbon::class,$author->first()->dob);   //test if `dob` field catch  carbon format
+        $this->assertInstanceOf(Carbon::class,$author->first()->dob);   //test `dob` field catch  carbon instance format
+        $this->assertEquals($data['dob'],$author->first()->dob->format('Y/m/d'));   //test if given data catch 'Y/m/d' format
         
         //-----TEST REDIRECT-------------- //
         $author = Author::first();
