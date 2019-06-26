@@ -20,7 +20,7 @@ class AuthorManagementTest extends TestCase
 
         $data = [
             'name'=>'Author1',
-            'dob'=>'05/14/1988' //dob=>data of birth
+            'dob'=>'1988/05/14' //dob=>data of birth
         ];
 
         $response = $this->post('/authors',$data);
