@@ -52,12 +52,7 @@ class BookReservationTest extends TestCase
 
         $this->withoutExceptionHandling();
 
-        $book = [
-            'title'=>'Book1 title',
-            'author'=>'Book1 author'
-        ];
-
-        $response = $this->post('/books',$book);
+        $response = $this->post('/books',$this->_data());
 
         $this->assertCount(1,Book::all());
         
