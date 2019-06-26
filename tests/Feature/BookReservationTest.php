@@ -60,14 +60,10 @@ class BookReservationTest extends TestCase
     {
 
     //-----------ADD SECTION--------------
-        $book = [
-            'title'=>'Book1',
-            'author'=>'Book1'
-        ];
+        $data = $this->_data();
 
         $this->withoutExceptionHandling();
-
-        $response = $this->post('/books',$book);
+        $response = $this->post('/books',$data);
 
         //-----TEST BOOK CREATED -------------//
         $this->assertCount(1,Book::all());
@@ -82,25 +78,23 @@ class BookReservationTest extends TestCase
         //get added book by title
         //$currBook = Book::first();
         $currBook = Book::where([
-            ['title','=',$book['title'] ],
-            ['author','=',$book['author']]
+            ['title','=',$data['title'] ],
+            ['author','=',$data['author']]
             ])->first();
         
         $updBookId = $currBook->id;
 
-        //update book
-        $uBookData = [
-            'title'=>'Book1 title updated',
-            'author'=>'Book1 author updated'
-        ];
-        
-        $response = $this->put('/books/'.$updBookId,$uBookData);
+
+        $data['title'] = $data['title'] .' updated';
+        $data['author'] = $data['author'] .' updated';
+
+        $response = $this->put('/books/'.$updBookId,$data);
 
         //-----------TEST UPDATED DATA----------------------
         $updBook = Book::where('id','=',$updBookId)->first();
         
-        $this->assertEquals($updBook->title,$uBookData['title']);
-        $this->assertEquals($updBook->author,$uBookData['author']);
+        $this->assertEquals($updBook->title,$data['title']);
+        $this->assertEquals($updBook->author,$data['author']);
 
         //-----TEST REDIRECT-------------- //
 
