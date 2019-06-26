@@ -162,4 +162,12 @@ class BookReservationTest extends TestCase
 
     }
 
+    private function _data()
+    {
+        return [
+            'title'=>'Book1',
+            'author'=>'Author1'
+        ];
+    }
+
 }
