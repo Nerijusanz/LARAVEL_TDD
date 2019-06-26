@@ -21,7 +21,7 @@ class AuthorsController extends Controller
 
         $data = request()->validate([
             'name'=>['required','string','min:2','max:255'],
-            'dob'=>['required','string']
+            'dob'=>['required','date']
         ]);
 
         return $data;
