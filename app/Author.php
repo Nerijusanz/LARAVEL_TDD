@@ -14,10 +14,12 @@ class Author extends Model
 
     protected $dates = ['dob']; //dob timestamp format field 
 
+    public $formatDate = "Y-m-d";
+
     //note: func() name structure set{FieldName}Attribute(${fieldname});
     public function setDobAttribute($dob)
     {
-        $this->attributes['dob'] = Carbon::parse($dob); //parse field into carbon format
+        $this->attributes['dob'] = Carbon::parse($dob)->format($this->formatDate()); //parse field into carbon format
     }
 
 
@@ -28,5 +30,10 @@ class Author extends Model
 
     public function viewPathById(){
         return $this->viewPath().'/'.$this->id;
+    }
+
+    
+    public function formatDate(){
+        return $this->formatDate;
     }
 }
