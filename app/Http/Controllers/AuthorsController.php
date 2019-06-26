@@ -8,6 +8,7 @@ use App\Author;
 
 class AuthorsController extends Controller
 {
+
     public function store(Author $author){
 
         Author::create($this->_validate() );
@@ -26,4 +27,5 @@ class AuthorsController extends Controller
 
         return $data;
     }
+    
 }
