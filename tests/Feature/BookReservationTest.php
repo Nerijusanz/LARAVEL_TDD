@@ -6,6 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\Book;
+use App\Author;
 
 class BookReservationTest extends TestCase
 {
@@ -159,8 +160,6 @@ class BookReservationTest extends TestCase
         
         $response->assertRedirect('/books');
 
-
     }
-
 
 }
