@@ -16,18 +16,15 @@ class BookReservationTest extends TestCase
     public function testAddBookTitleRequired()
     {
 
-        $book = [
-            'title'=>'',
-            'author'=>'Book1 author'
-        ];
+        $data = $this->_data();
+        $data['title'] = '';
 
-        $response = $this->post('/books',$book);
+        $response = $this->post('/books',$data);
 
         $this->assertCount(0,Book::all());
 
         $response->assertSessionHasErrors('title');
 
-        
     }
 
     public function testAddBookTitleRequiredMinThreeStringSymbols()
