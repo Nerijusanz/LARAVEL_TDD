@@ -21,7 +21,7 @@ class AuthorManagementTest extends TestCase
 
         $data = [
             'name'=>'Author1',
-            'dob'=>'1988/05/14' //dob=>data of birth
+            'dob'=>'1988-05-14' //dob=>data of birth
         ];
 
         $response = $this->post('/authors',$data);
@@ -30,7 +30,7 @@ class AuthorManagementTest extends TestCase
 
         $this->assertCount(1,$author);
         $this->assertInstanceOf(Carbon::class,$author->first()->dob);   //test `dob` field catch  carbon instance format
-        $this->assertEquals($data['dob'],$author->first()->dob->format('Y/m/d'));   //test if given data catch 'Y/m/d' format
+        $this->assertEquals($data['dob'],$author->first()->dob->format($author->first()->formatDate()) );   //test if given data catch 'Y/m/d' format
         
         //-----TEST REDIRECT-------------- //
         $author = Author::first();
