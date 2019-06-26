@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Carbon\Carbon;
 
 use App\Author;
 
@@ -25,7 +26,10 @@ class AuthorManagementTest extends TestCase
 
         $response = $this->post('/authors',$data);
 
-        $this->assertCount(1,Author::all());
+        $author = Author::all();
+
+        $this->assertCount(1,$author);
+        $this->assertInstanceOf(Carbon::class,$author->first()->dob);   //test if `dob` field catch  carbon format
         
         //-----TEST REDIRECT-------------- //
         $author = Author::first();
