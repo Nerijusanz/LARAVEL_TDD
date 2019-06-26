@@ -19,3 +19,9 @@ Route::get('/books','BooksController@index');
 Route::post('/books','BooksController@store');
 Route::put('/books/{book}','BooksController@update');
 Route::delete('/books/{book}','BooksController@destroy');
+
+
+Route::get('/authors','AuthorsController@index');
+Route::post('/authors','AuthorsController@store');
+Route::put('/authors/{author}','AuthorsController@update');
+Route::delete('/authors/{author}','AuthorsController@destroy');
