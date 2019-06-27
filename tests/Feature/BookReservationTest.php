@@ -59,7 +59,7 @@ class BookReservationTest extends TestCase
     public function testUpdateBook()
     {
 
-    //-----------ADD SECTION--------------
+    //----------------ADD SECTION--------------
         $data = $this->_data();
 
         $this->withoutExceptionHandling();
@@ -68,15 +68,8 @@ class BookReservationTest extends TestCase
         //-----TEST BOOK CREATED -------------//
         $this->assertCount(1,Book::all());
 
-        //-----TEST REDIRECT-------------- //
-        $book = Book::first();
-        $response->assertRedirect($book->viewPath());
-
-
     //------------UPDATE SECTION--------------
 
-        //get added book by title
-        //$currBook = Book::first();
         $currBook = Book::where([
             ['title','=',$data['title'] ],
             ['author','=',$data['author']]
@@ -96,7 +89,7 @@ class BookReservationTest extends TestCase
         $this->assertEquals($updBook->title,$data['title']);
         $this->assertEquals($updBook->author,$data['author']);
 
-        //-----TEST REDIRECT-------------- //
+        //--------------TEST REDIRECT-------------- //
 
         $response->assertRedirect($updBook->viewPathById());
 
