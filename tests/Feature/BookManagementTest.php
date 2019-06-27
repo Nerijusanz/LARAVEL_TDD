@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Book;
 use App\Author;
 
-class BookReservationTest extends TestCase
+class BookManagementTest extends TestCase
 {
 
     use RefreshDatabase;
