@@ -112,19 +112,12 @@ class BookReservationTest extends TestCase
 
         $response = $this->post('/books',$data);
 
-        //---- TEST BOOK IS ADDEDD--------//
+        //------- TEST BOOK IS ADDEDD--------//
 
         $this->assertCount(1,Book::all());
 
-        //-----TEST REDIRECT-------------- //
-        $book = Book::first();
-        $response->assertRedirect($book->viewPath());
-
-
     //--------------DELETE SECTION--------------
 
-        //get added book by title
-        //$currBook = Book::first();
         $currBook = Book::where([
             ['title','=',$data['title'] ],
             ['author','=',$data['author']]
