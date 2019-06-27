@@ -82,16 +82,16 @@ class BookReservationTest extends TestCase
             ['author','=',$data['author']]
             ])->first();
         
-        $updBookId = $currBook->id;
+        $currBookId = $currBook->id;
 
 
         $data['title'] = $data['title'] .' updated';
         $data['author'] = $data['author'] .' updated';
 
-        $response = $this->put('/books/'.$updBookId,$data);
+        $response = $this->put('/books/'.$currBookId,$data);
 
         //-----------TEST UPDATED DATA----------------------
-        $updBook = Book::where('id','=',$updBookId)->first();
+        $updBook = Book::where('id','=',$currBookId)->first();
         
         $this->assertEquals($updBook->title,$data['title']);
         $this->assertEquals($updBook->author,$data['author']);
